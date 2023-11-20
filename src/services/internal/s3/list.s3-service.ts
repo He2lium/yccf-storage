@@ -1,7 +1,8 @@
 import {ListObjectsCommand} from "@aws-sdk/client-s3";
-import {S3InstanceWithBucket} from "../../../types/action-data.type";
+import {globalRefS3Service} from "../global-ref-s3.service";
 
-export const ListS3Service = async (prefix: string, {S3ClientInstance, Bucket}: S3InstanceWithBucket) => {
+export const ListS3Service = async (prefix: string) => {
+    const {Bucket, S3ClientInstance} = globalRefS3Service.get()
     try {
         const listResponse =
             await S3ClientInstance.send(
