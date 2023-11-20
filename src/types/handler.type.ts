@@ -1,6 +1,7 @@
 import {SharpOptionsType} from "./sharp-options.type";
 import {AxiosRequestConfig} from "axios";
 import {S3Client, S3ClientConfigType} from "@aws-sdk/client-s3";
+import {CallbackType} from "./callback.type";
 
 export enum HandlerAction {
     delete = "delete",
@@ -58,7 +59,7 @@ export interface HandleImageActionType extends Omit<HandlerType, "sourceUrl" | "
     action: HandlerAction.justHandleImage
 }
 
-export type HandlerActionType =
+export type HandlerActions =
     HandlerType
     | HandleDeleteActionType
     | HandleMoveActionType
@@ -66,3 +67,8 @@ export type HandlerActionType =
     | HandleDownloadActionType
     | HandleDownloadImageActionType
     | HandleImageActionType
+
+export interface HandlerActionType {
+    handlers: HandlerActions[],
+    callback?: CallbackType
+}

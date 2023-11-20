@@ -1,6 +1,5 @@
 import {
-    HandlerAction,
-    HandlerActionType,
+    HandlerAction, HandlerActions,
     HandlerType
 } from "../types/handler.type";
 import {DeleteS3Service} from "./s3/delete.s3-service";
@@ -11,8 +10,11 @@ import {GetMimeService} from "./get-mime.service";
 import {GetS3Service} from "./s3/get.s3-service";
 import {HandleImagesService} from "./handle-images.service";
 import {GlobalRefS3Service} from "./global-ref-s3.service";
+import axios, {AxiosError} from "axios";
+import {CallbackType} from "../types/callback.type";
+import {CallbackError} from "./error.service";
 
-export const HandleService = async (actions: HandlerActionType[]) => {
+export const HandleService = async (actions: HandlerActions[], callbackData?: CallbackType) => {
     for (let actionHandle of actions) {
 
         const {
@@ -70,7 +72,7 @@ export const HandleService = async (actions: HandlerActionType[]) => {
                     await GetS3Service(destinationKey ?? sourceKey),
                     imageOptions
                 )
-                if(!destinationKey)
+                if (!destinationKey)
                     await DeleteS3Service([sourceKey])
                 break;
             default:
@@ -80,6 +82,14 @@ export const HandleService = async (actions: HandlerActionType[]) => {
                     action
                 })
                 return;
+        }
+    }
+
+    if (callbackData) {
+        try {
+            await axios.post(callbackData.url, callbackData.data, callbackData.config)
+        } catch (e) {
+            CallbackError(e as AxiosError, callbackData)
         }
     }
 }
