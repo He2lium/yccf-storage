@@ -29,8 +29,7 @@ export interface HandlerType {
     sourceKeys: string[]
     destinationKey: string // To move
     imageOptions: SharpOptionsType[]
-    axiosOptions?: AxiosRequestConfig,
-    s3options?: S3OptionsType
+    axiosOptions?: AxiosRequestConfig
 }
 
 export interface HandleDeleteActionType extends Omit<HandlerType, "sourceUrl" | "destinationKey" | "imageOptions" | "axiosOptions" | "sourceKey"> {
@@ -70,5 +69,6 @@ export type HandlerActions =
 
 export interface HandlerActionType {
     handlers: HandlerActions[],
+    s3options?: S3OptionsType
     callback?: CallbackType
 }

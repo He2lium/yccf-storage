@@ -9,7 +9,6 @@ import {PutS3Service} from "./s3/put.s3-service";
 import {GetMimeService} from "./get-mime.service";
 import {GetS3Service} from "./s3/get.s3-service";
 import {HandleImagesService} from "./handle-images.service";
-import {GlobalRefS3Service} from "./global-ref-s3.service";
 import axios, {AxiosError} from "axios";
 import {CallbackType} from "../types/callback.type";
 import {CallbackError} from "./error.service";
@@ -25,10 +24,7 @@ export const HandleService = async (actions: HandlerActions[], callbackData?: Ca
             sourceKeys,
             sourceKey,
             sourceUrl,
-            s3options
         } = actionHandle as HandlerType
-
-        GlobalRefS3Service.set(s3options)
 
         switch (action) {
 
