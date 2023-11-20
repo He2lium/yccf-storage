@@ -1,5 +1,5 @@
 import {AxiosError} from "axios";
-import {CallbackType} from "../types/callback.type";
+import {YcfStorageCallbackType} from "../../types/ycf-storage-callback.type";
 
 const LogError = (err: {message: string, [key: string]: any})=>{
     console.error({
@@ -8,7 +8,7 @@ const LogError = (err: {message: string, [key: string]: any})=>{
     })
 }
 
-export const CallbackError = (e: AxiosError, callbackData: CallbackType)=>{
+export const CallbackError = (e: AxiosError, callbackData: YcfStorageCallbackType)=>{
     LogError({
         message: 'Storage Cloud Function callback error',
         axios: {

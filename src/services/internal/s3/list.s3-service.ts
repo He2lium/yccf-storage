@@ -1,5 +1,5 @@
 import {ListObjectsCommand} from "@aws-sdk/client-s3";
-import {S3InstanceWithBucket} from "../../types/handler.type";
+import {S3InstanceWithBucket} from "../../../types/action-data.type";
 
 export const ListS3Service = async (prefix: string, {S3ClientInstance, Bucket}: S3InstanceWithBucket) => {
     try {

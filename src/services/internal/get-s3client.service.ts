@@ -1,6 +1,6 @@
 import {S3Client, S3ClientConfigType} from "@aws-sdk/client-s3";
 
-export const GetS3Client = (options?: S3ClientConfigType) => new S3Client(options ?? {
+export const getS3clientService = (options?: S3ClientConfigType) => new S3Client(options ?? {
     region: process.env.REGION,
     endpoint: process.env.ENDPOINT,
     credentials: {

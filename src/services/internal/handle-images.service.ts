@@ -1,15 +1,15 @@
 import {PutS3Service} from "./s3/put.s3-service";
 import {SharpService} from "./sharp.service";
-import {GetMimeService} from "./get-mime.service";
-import {SharpOptionsType} from "../types/sharp-options.type";
+import {getMimeService} from "./get-mime.service";
+import {YcfStorageImageOptionsType} from "../../types/ycf-storage-image-options.type";
 
-export const HandleImagesService = async (buf: Buffer, imageOptions: SharpOptionsType[])=>{
+export const handleImagesService = async (buf: Buffer, imageOptions: YcfStorageImageOptionsType[])=>{
     for (let imageOption of imageOptions){
         const {Key} = imageOption
         await PutS3Service(
             Key,
             await SharpService(buf, imageOption),
-            GetMimeService(Key)
+            getMimeService(Key)
         )
     }
 }

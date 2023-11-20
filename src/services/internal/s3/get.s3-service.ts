@@ -1,8 +1,8 @@
 import {GetObjectCommand} from "@aws-sdk/client-s3";
-import {GlobalRefS3Service} from "../global-ref-s3.service";
+import {globalRefS3Service} from "../global-ref-s3.service";
 
 export const GetS3Service = async (Key: string)=>{
-    const {Bucket, S3ClientInstance} = GlobalRefS3Service.get()
+    const {Bucket, S3ClientInstance} = globalRefS3Service.get()
 
     const file = await S3ClientInstance.send(new GetObjectCommand({
         Bucket,

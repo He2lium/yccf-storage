@@ -1,8 +1,8 @@
 import {DeleteObjectsCommand} from "@aws-sdk/client-s3";
-import {GlobalRefS3Service} from "../global-ref-s3.service";
+import {globalRefS3Service} from "../global-ref-s3.service";
 
 export const DeleteS3Service = async (Keys: string[]) => {
-    const {Bucket, S3ClientInstance} = GlobalRefS3Service.get()
+    const {Bucket, S3ClientInstance} = globalRefS3Service.get()
     if (!Keys.length) return
     const deleteObjectsCommand = new DeleteObjectsCommand({
         Bucket,
