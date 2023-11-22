@@ -14,6 +14,7 @@ import {YcfStorageCallbackType} from "../types/ycf-storage-callback.type";
 import {CallbackError} from "./internal/error.service";
 import {YcfStorageActionEnum} from "../types/ycf-storage-action.enum";
 import {YcfStorageAnyActionType} from "../types/ycf-storage-any-action.type";
+import {ListS3Service} from "./internal/s3/list.s3-service";
 
 export const YcfStorageActionHandlerService = async (actions: YcfStorageAnyActionType[], callbackData?: YcfStorageCallbackType) => {
     for (let actionHandle of actions) {
@@ -26,12 +27,17 @@ export const YcfStorageActionHandlerService = async (actions: YcfStorageAnyActio
             sourceKeys,
             sourceKey,
             sourceUrl,
+            prefix
         } = actionHandle as ActionDataType
 
         switch (action) {
 
             case YcfStorageActionEnum.delete:
                 await DeleteS3Service(sourceKeys)
+                break;
+
+            case YcfStorageActionEnum.deleteByPrefix:
+                await DeleteS3Service(await ListS3Service(prefix))
                 break;
 
             case YcfStorageActionEnum.move:

@@ -5,7 +5,7 @@ import {
     YcfStorageActionMoveType,
     YcfStorageActionDownloadImageWithHandlingType,
     YcfStorageActionMoveImageWithHandlingType,
-    YcfStorageActionDeleteType
+    YcfStorageActionDeleteType, YcfStorageActionDeleteByPrefixType
 } from "./ycf-storage-actions.type";
 
 export type YcfStorageAnyActionType =
@@ -16,3 +16,4 @@ export type YcfStorageAnyActionType =
     | YcfStorageActionDownloadImageWithHandlingType
     | YcfStorageActionMoveImageWithHandlingType
     | YcfStorageActionDeleteType
+    | YcfStorageActionDeleteByPrefixType

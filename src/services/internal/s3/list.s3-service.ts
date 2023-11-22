@@ -11,7 +11,7 @@ export const ListS3Service = async (prefix: string) => {
                     Prefix: prefix,
                 })
             )
-        return listResponse.Contents?.map((o) => o.Key)
+        return listResponse.Contents?.map((o) => o.Key as string) ?? []
     } catch (e) {
         return []
     }

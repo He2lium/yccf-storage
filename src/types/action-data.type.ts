@@ -7,6 +7,7 @@ export interface ActionDataType {
     sourceUrl: string,
     sourceKey: string, // URL | S3Key
     sourceKeys: string[]
+    prefix: string,
     destinationKey: string // To move
     imageOptions: YcfStorageImageOptionsType[]
     axiosOptions?: AxiosRequestConfig
