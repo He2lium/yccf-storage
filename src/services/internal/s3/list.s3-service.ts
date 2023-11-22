@@ -8,7 +8,7 @@ export const ListS3Service = async (prefix: string) => {
             await S3ClientInstance.send(
                 new ListObjectsCommand({
                     Bucket,
-                    Prefix: prefix + '/',
+                    Prefix: prefix,
                 })
             )
         return listResponse.Contents?.map((o) => o.Key)
