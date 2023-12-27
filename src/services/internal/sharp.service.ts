@@ -10,6 +10,6 @@ export const SharpService = async (buffer: Buffer, options: YcfStorageImageOptio
         else if (width) source.resize(width, null, {fit})
         else if (height) source.resize(null, height, {fit})
     }
-    source.toFormat(options.to,{quality: 100})
+    source.toFormat(options.to,{quality: 100, lossless: true})
     return source.toBuffer()
 }
