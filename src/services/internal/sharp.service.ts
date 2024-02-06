@@ -7,10 +7,10 @@ export const SharpService = async (
 ) => {
   const source = sharp(buffer);
   if (options.resize) {
-    const { width, height, fit } = options.resize;
-    if (width && height) source.resize(width, height, { fit });
-    else if (width) source.resize(width, null, { fit });
-    else if (height) source.resize(null, height, { fit });
+    const { width, height, fit, background } = options.resize;
+    if (width && height) source.resize(width, height, { fit, background });
+    else if (width) source.resize(width, null, { fit, background });
+    else if (height) source.resize(null, height, { fit, background });
   }
 
   source.toFormat(options.to, options.toOptions);
