@@ -14,6 +14,7 @@ import { YcfStorageAnyActionType } from "../types/ycf-storage-any-action.type";
 import { ListS3Service } from "./internal/s3/list.s3-service";
 import { YcfStorageS3optionsType } from "../types/ycf-storage-s3options.type";
 import { globalRefS3Service } from "./internal/global-ref-s3.service";
+import { CopyS3Service } from "./internal/s3/copy.s3-service";
 
 export const YcfStorageActionHandlerService = async (
   actions: YcfStorageAnyActionType[],
@@ -47,6 +48,10 @@ export const YcfStorageActionHandlerService = async (
         await MoveS3Service(sourceKey, destinationKey);
         break;
 
+      case YcfStorageActionEnum.copy:
+        await MoveS3Service(sourceKey, destinationKey);
+        break;
+
       case YcfStorageActionEnum.download:
         await PutS3Service(
           destinationKey,
@@ -77,6 +82,14 @@ export const YcfStorageActionHandlerService = async (
           imageOptions,
         );
         if (!destinationKey) await DeleteS3Service([sourceKey]);
+        break;
+
+      case YcfStorageActionEnum.copyImageAndHandle:
+        if (destinationKey) await CopyS3Service(sourceKey, destinationKey);
+        await handleImagesService(
+          await GetS3Service(destinationKey ?? sourceKey),
+          imageOptions,
+        );
         break;
       default:
         console.error({
