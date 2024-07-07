@@ -1,12 +1,12 @@
 {
   "name": "yccf-storage",
-  "version": "1.0.9",
+  "version": "1.0.17",
   "description": "File managing and image resizing - Yandex Cloud Function",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "publishing": "npm version patch && npm publish",
+    "publishing": "npm version patch && git push && npm publish",
     "dev": "ts-node src/index.ts"
   },
   "files": [
