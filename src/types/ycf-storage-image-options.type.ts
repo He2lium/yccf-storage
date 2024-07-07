@@ -11,6 +11,7 @@ import {
 
 export interface YcfStorageImageOptionsType {
     Key: string,
+    watermarkUrl?: string
     resize?:{
         width?: number,
         height?: number,
