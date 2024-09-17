@@ -4,10 +4,10 @@ import {QueueMessageError} from "./internal/error.service";
 import {globalRefS3Service} from "./internal/global-ref-s3.service";
 import {YcfStorageMqType} from "../types/ycf-storage-mq.type";
 
-export const YcfDirectHandler: Handler.Http = async (event, ctx)=>{
-
-    // Logic
-
+export const YcfHttpHandler: Handler.Http = async (event, ctx)=>{
+    const {s3options, handlers, callback} = JSON.parse(event.body) as YcfStorageMqType
+    globalRefS3Service.set(s3options)
+    await YcfStorageActionHandlerService(handlers, callback)
     return {
         statusCode: 200
     }
