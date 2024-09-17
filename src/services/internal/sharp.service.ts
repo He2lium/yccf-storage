@@ -7,7 +7,7 @@ export const SharpService = async (
   options: YcfStorageImageOptionsType,
 ) => {
   const source = sharp(buffer);
-  source.withMetadata()
+  source.withMetadata({orientation})
   if (options.resize) {
     const { width, height, fit, background } = options.resize;
     if (width && height) source.resize(width, height, { fit, background });

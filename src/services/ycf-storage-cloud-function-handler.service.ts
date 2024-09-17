@@ -4,6 +4,15 @@ import {QueueMessageError} from "./internal/error.service";
 import {globalRefS3Service} from "./internal/global-ref-s3.service";
 import {YcfStorageMqType} from "../types/ycf-storage-mq.type";
 
+export const YcfDirectHandler: Handler.Http = async (event, ctx)=>{
+
+    // Logic
+
+    return {
+        statusCode: 200
+    }
+}
+
 export const YcfStorageCloudFunctionHandlerService: Handler.MessageQueue = async (event, _context) => {
     for (let message of event.messages) {
         try {
