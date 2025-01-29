@@ -21,7 +21,7 @@ export const YcfStorageActionHandlerService = async (
   callbackData?: YcfStorageCallbackType | null,
   s3options?: YcfStorageS3optionsType,
 ) => {
-  if (s3options) globalRefS3Service.set(s3options);
+  globalRefS3Service.set(s3options);
 
   for (let actionHandle of actions) {
     const {
